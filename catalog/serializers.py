@@ -1,17 +1,14 @@
 from rest_framework import serializers
-from .models import Curso, Estudiante
+from .models import Marca, Vehiculo
 
-class EstudianteSerializer(serializers.ModelSerializer):
+class MarcaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Estudiante
-        fields = '__all__'
+        model = Marca
+        fields = ["id", "nombre"]
 
-class CursoSerializer(serializers.ModelSerializer):
-    total_aprobados = serializers.SerializerMethodField()
+class VehiculoSerializer(serializers.ModelSerializer):
+    marca_nombre = serializers.CharField(source="marca.nombre", read_only=True)
 
     class Meta:
-        model = Curso
-        fields = ['id', 'codigo', 'nombre', 'total_aprobados']
-
-    def get_total_aprobados(self, obj):
-        return obj.estudiantes.filter(aprobado=True).count()
+        model = Vehiculo
+        fields = ["id", "marca", "marca_nombre", "modelo", "anio", "placa", "color", "creado_en"]
