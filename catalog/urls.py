@@ -1,8 +1,8 @@
 from django.urls import path
 from rest_framework.routers import DefaultRouter
 from .views import MarcaViewSet, VehiculoViewSet
-from .service_types_views import cursos_types_list_create, cursos_types_detail
-from .vehicle_services_views import estudiantes_services_list_create, estudiantes_services_detail
+from .estudiantes_types_views import cursos_types_list_create, cursos_types_detail
+from .estudiantes_views import estudiantes_services_list_create, estudiantes_services_detail
 
 router = DefaultRouter()
 router.register(r"cursos", MarcaViewSet, basename="cursos")
